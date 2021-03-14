@@ -6,11 +6,17 @@ machines.
 
 */
 int int_shifts_are(int x){
-  // nếu là logical shift thì kết quả sẽ là 0 còn nếu là arthimetic shift thì kết quả sẽ là 0xFFFFFFFF 
     int shift_val=((sizeof(int)) <<3)-1;
-    return (x >>shift_val) && 1;
+    x=(x >> shift_val) & 0x80000000; // lấy bit most
+    return  !!x;
+
 }
 int main(){
-    int x=0x80000000;
-  printf("%d",int_shifts_are(x));
+ int x=0x80000000;
+ if(int_shifts_are(x)){
+    printf("Arthimetic right shifts");
+  }
+  else{
+    printf("Logical right shifts");
+  }
 }
