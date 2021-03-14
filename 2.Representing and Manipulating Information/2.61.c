@@ -13,6 +13,7 @@ int A(int x){
 }
 
 int B(int x){
+    // trường hợp bit không có 0 là 0xFFFFFFFF khi nghịch đảo bit của nó lại ta được 0
     return !(~x==0);
 }
 
@@ -21,7 +22,8 @@ int C(int x){
 }
 
 int D(int x){
+    
     int shift_val=(sizeof(int)-1)<<3;
-    int x_most=x >> shift_val;
+    int x_most=x >> shift_val;//lấy bit most
     return!(~x_most==0);
 }
