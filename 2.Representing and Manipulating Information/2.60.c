@@ -11,7 +11,7 @@ replace_byte(0x12345678, 0, 0xAB) --> 0x123456AB
 unsigned replace_byte(unsigned x,int i, unsigned char b){
     unsigned shift_bit = i*8;
     unsigned mask_byte=(1 << shift_bit)-1; // mask for add_byte
-    unsigned add_byte= (0xab <<shift_bit) + (x&mask_byte);
+    unsigned add_byte= (b <<shift_bit) + (x&mask_byte);
 
     mask_byte=(mask_byte << 8) +0xff;//mask for x
     x=x&(~mask_byte);
