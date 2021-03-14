@@ -7,7 +7,7 @@ machines.
 */
 int int_shifts_are(int x){
     int shift_val=((sizeof(int)) <<3)-1;
-    x=(x >> shift_val) & 0x80000000; // lấy bit most
+    x=(x >> shift_val) & (1 << shift_val); // lấy most bit
     return  !!x;
 
 }
