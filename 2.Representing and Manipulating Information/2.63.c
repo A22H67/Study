@@ -6,14 +6,14 @@ operations not including right shifts or division. You may use the computation
 8*sizeof(int) to determine w, the number of bits in data type int. The shift
 amount k can range from 0 to w − 1.
 unsigned srl(unsigned x, int k) {
-/* Perform shift arithmetically */
+// Perform shift arithmetically 
 unsigned xsra = (int) x >> k;
 .
 .
 .
 }
 int sra(int x, int k) {
-/* Perform shift logically */
+// Perform shift logically 
 int xsrl = (unsigned) x >> k;
 .
 .
