@@ -22,7 +22,7 @@ int xsrl = (unsigned) x >> k;
 */
  #include<stdio.h>
 unsigned srl(unsigned x,int k){
-    unsigned size_int=8*sizeof(int);//Perform shift logic
+    unsigned size_int=8*sizeof(int);//shift arithmetically
     unsigned xrsa=(int) x>>k;
     unsigned mask=(1<<(size_int-k))-1;
     xrsa=xrsa&mask;
@@ -30,7 +30,7 @@ unsigned srl(unsigned x,int k){
 }
 int sra(int x,int k){
 
-    int xrsl=(unsigned) x >> k;//Perform shift arithmetically
+    int xrsl=(unsigned) x >> k;//shift logically
     int size_int=8*sizeof(int);
     unsigned mask=(1<<(size_int-k))-1;
     xrsl=xrsl^(~mask);
