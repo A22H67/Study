@@ -14,10 +14,7 @@ Hint: First transform x into a bit vector of the form [0 . . . 011 . . . 1].
 */
 #include <stdio.h>
 int leftmost_one(unsigned x){
-    unsigned k;
-    unsigned y=0;
     unsigned a;
-    unsigned shift_val=0;
     ((a=x&0xFFFF0000)!=0)&&(x=a); //2     check 16 bit
     ((a=x&0xFF00FF00)!=0)&&(x=a);//4      check 8 bit
     ((a=x&0xF0F0F0F0)!=0)&&(x=a);//6      check 4 bit
