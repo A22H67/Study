@@ -5,9 +5,6 @@ the following prototype:
 float_bits float_absval(float_bits f);
 For floating-point number f , this function computes |f |. If f is NaN, your
 function should simply return f .
-Test your function by evaluating it for all 2 32 values of argument f and com-
-paring the result to what would be obtained using your machine’s floating-point
-operations.
 */
 #include<stdio.h>
 typedef unsigned float_bits;
