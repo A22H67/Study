@@ -16,18 +16,19 @@ float_bits float_f2i(float_bits f){
     unsigned frac=f&0x7fffff;
     unsigned s=f>>31;
     unsigned bias=127;
-    if(exp==0xff && frac!=0){//NAN
+    if(exp==0xff && frac!=0){
         return 0x80000000;
     }
 
     exp=exp-127;
-    if(exp>32){//overflow
-        return 0x80000000;
-    }else if(exp>23){
-        exp=23;
-    }
     unsigned k=23-exp;
 
+    if(exp>32){
+        return 0x80000000;
+    }else if(exp>23){
+        k=exp-23;
+    }
+    
     frac=frac >> k;
     return (1<<(exp))|frac;
 }
