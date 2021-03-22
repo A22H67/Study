@@ -9,6 +9,7 @@ Test your function by evaluating it for all 2 32 values of argument f and com-
 paring the result to what would be obtained using your machine’s floating-point
 operations.
 */
+#include<stdio.h>
 typedef unsigned float_bits;
 
 float_bits float_absval(float_bits f){
