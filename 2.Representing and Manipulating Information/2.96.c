@@ -21,12 +21,17 @@ float_bits float_f2i(float_bits f)
     {
         return 0x80000000;//NAN
     }
-    
+
     exp=exp-127;
     unsigned k;
+
     if(exp>32)
     {
         return 0x80000000;//overflow
+    }
+    else if( (int) exp < 0)
+    {
+        return 0;
     }
     else if(exp>23)
     {
