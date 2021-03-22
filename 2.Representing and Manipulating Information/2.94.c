@@ -11,6 +11,7 @@ operations.
 */
 
 #include <stdio.h>
+typedef unsigned float_bits;
 float_bits float_twice(float_bits f)
 {
     unsigned exp=(f>>23) & 0xff ;
