@@ -30,7 +30,7 @@ float_bits float_f2i(float_bits f)
         return 0x80000000;//overflow
     }
     else if( (int) exp < 0)
-    {
+    {   //0<f<1
         return 0;
     }
     else if(exp>23)
