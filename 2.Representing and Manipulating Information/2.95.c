@@ -10,7 +10,7 @@ function should simply return f .
 typedef unsigned float_bits;
 float_bits float_half(float_bits f){
     unsigned exp=(f>>23) & 0xff ;
-    unsigned frac=f&0x7ffff;
+    unsigned frac=f&0x7fffff;
     unsigned s=f>>31;
     if(exp==0xFF && frac!=0) //check NAN
     {
