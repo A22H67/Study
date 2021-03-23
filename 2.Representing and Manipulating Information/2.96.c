@@ -13,9 +13,10 @@ of range, or it is NaN), then the function should return 0x80000000
 typedef unsigned float_bits;
 float_bits float_f2i(float_bits f)
 {
-    unsigned exp=(f>>23) & 0xff ;
+    unsigned exp=(f>>23) & 0xFF ;
+
     unsigned frac=f&0x7fffff;
-    unsigned s=f>>31;
+
     unsigned bias=127;
     if(exp==0xff && frac!=0)
     {
@@ -29,8 +30,8 @@ float_bits float_f2i(float_bits f)
     {
         return 0x80000000;//overflow
     }
-    else if( (int) exp < 0)
-    {   //0<f<1
+    else if((int)exp <0)
+    {   // 0<f<1
         return 0;
     }
     else if(exp>23)
@@ -43,7 +44,15 @@ float_bits float_f2i(float_bits f)
         k=23-exp;
         frac=frac >> k;
     }
-    return (1<<(exp))|frac;
+
+    unsigned s=(f>>31);
+    int result=(1<<(exp))|frac;
+
+    if(s)
+    { 
+       result=(~result)+1; //computing -x
+    }
+    return result;
 }
 int main()
 {
