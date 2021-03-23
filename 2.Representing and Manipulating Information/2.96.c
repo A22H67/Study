@@ -59,7 +59,7 @@ int main()
     unsigned x=0x4A564504;
     printf("0x%x convert ",x);
     printf("0x%x\n",float_f2i(x));
-    x=0x4640E400;
+    x=0xCA564504;
     printf("0x%x convert ",x);
     printf("0x%x\n",float_f2i(x));
 
