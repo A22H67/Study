@@ -26,6 +26,15 @@ float_bits float_f2i(float_bits f)
     exp=exp-127;
     unsigned k;
 
+    if(exp==0xff && frac!=0)
+    {
+        return 0x80000000;//NAN
+    }
+
+    exp=exp-127;
+    unsigned k;
+    int result;
+    
     if(exp>32)
     {
         return 0x80000000;//overflow
@@ -34,22 +43,25 @@ float_bits float_f2i(float_bits f)
     {   // 0<f<1
         return 0;
     }
+
     else if(exp>23)
     {
         k=exp-23;
-        frac=frac << k;
+        frac=frac | 0x800000;
+        result=frac << k;
+
     }
     else
     {
         k=23-exp;
         frac=frac >> k;
+        result=(1<<(exp))|frac;
     }
 
     unsigned s=(f>>31);
-    int result=(1<<(exp))|frac;
 
-    if(s)
-    { 
+    if(s){
+
        result=(~result)+1; //computing -x
     }
     return result;
