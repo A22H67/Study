@@ -8,7 +8,7 @@ You might want to make use of the instruction cmovp (move if even parity).
 #include <math.h>
 
 int find_range_cmov(float x){
-    //x in xxm0
+    //x in xmm0
     asm
     (
     "xorl %eax,%eax;" //nega
