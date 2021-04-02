@@ -8,6 +8,7 @@ result.
 #include <stdio.h>
 #include <math.h>
 int find_range_branches(float x){
+    //x in xmm0
     asm(
     "xorl %eax,%eax;" //nega
     "vxorps %xmm1, %xmm1, %xmm1;" // xmm1 0
