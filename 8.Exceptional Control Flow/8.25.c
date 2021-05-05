@@ -50,8 +50,7 @@ char *tfgets(char *str,int n,FILE *stream)
         signal(SIGINT,handler_interrupt);
         signal(SIGALRM,handler_arlam);
         alarm(5);
-
-        while(!kbhit())
+        while(!kbhit()) //checks the keyboard buffer and returns a nonzero value if the buffer has any keypress otherwise 0 is returned.
             ;
         kill(0,SIGINT);
         break;
