@@ -57,7 +57,6 @@ char *tfgets(char *str,int n,FILE *stream)
 int main()
 {
     char line[10];
-    //alarm 1 interrupt 2
     if(tfgets(line,10,stdin)!=NULL )
     {
         puts(line);
