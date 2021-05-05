@@ -44,11 +44,16 @@ char *tfgets(char *str,int n,FILE *stream)
     switch(sigsetjmp(buf,1))
     {
     case 0:
-        signal(SIGALRM,handler_arlam);
-        alarm(5);
 
+        signal(SIGALRM,handler_arlam);
+        sigset_t mask_one;
+        sigaddset(&mask_one,SIGALRM);
+
+        alarm(5);
         while(!kbhit()) //checks the keyboard buffer and returns a nonzero value if the buffer has any keypress otherwise 0 is returned.
             ;
+        sigprocmask(SIG_BLOCK,&mask_one,NULL);//block signal from alarm
+
         return fgets(str,n,stream);
     case 1:   // alarm
         return NULL;
