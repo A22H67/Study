@@ -1,11 +1,3 @@
-/*
-Write a version of the fgets function, called tfgets, that times out after 5 seconds.
-The tfgets function accepts the same inputs as fgets. If the user doesn’t type an
-input line within 5 seconds, tfgets returns NULL. Otherwise, it returns a pointer
-to the input line.
-
-*/
-
 #include "csapp.h"
 #include <termios.h>
 #include <unistd.h>
@@ -45,28 +37,21 @@ void handler_arlam()
 
     siglongjmp(buf,1);
 }
-void handler_interrupt()
-{
-    siglongjmp(buf,2);
-}
+
 char *tfgets(char *str,int n,FILE *stream)
 {
 
     switch(sigsetjmp(buf,1))
     {
     case 0:
-        signal(SIGINT,handler_interrupt);
         signal(SIGALRM,handler_arlam);
         alarm(5);
+
         while(!kbhit()) //checks the keyboard buffer and returns a nonzero value if the buffer has any keypress otherwise 0 is returned.
             ;
-        kill(0,SIGINT);
-        break;
+        return fgets(str,n,stream);
     case 1:   // alarm
         return NULL;
-    case 2: //interrup
-        return fgets(str,n,stream);
-
     }
 }
 int main()
