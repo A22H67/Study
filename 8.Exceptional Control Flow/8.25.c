@@ -72,5 +72,5 @@ int main()
     else{
          printf("Time Out\n");
     }
-    getchar();
+    return 0;
 }
