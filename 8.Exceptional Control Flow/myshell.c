@@ -34,7 +34,7 @@ terminal with the job’s PID and a description of the offending signal.
 
 char *bgjob[MAXARGS];
 int  listid[MAXARGS];
-int jobs=-1;
+volatile int jobs=-1;
 volatile int indexx;
 
 void deleteJob(int index){
