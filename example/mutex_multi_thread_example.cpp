@@ -1,4 +1,4 @@
-//use mutex to prevent race condition 
+//version use mutex to protect share variable from race condition 
 
 #include "std_lib_facilities.h"
 #include <Windows.h>
