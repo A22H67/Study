@@ -1,3 +1,5 @@
+/*version get return value from thread */
+
 #include "std_lib_facilities.h"
 #include <Windows.h>
 #include <process.h>
@@ -53,7 +55,6 @@ int main() {
 	CloseHandle(myhandleA);
 	CloseHandle(myhandleB);
 
-	DeleteCriticalSection(&critical);
 	
 	if (dwResult + dwResult2 == n) cout <<n<< " is perfect number\n";
 	else cout <<n << " is not perfect number\n";
