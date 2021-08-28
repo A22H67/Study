@@ -41,11 +41,11 @@ int main() {
 	para.end = n / 2;
 	DWORD  myThreadID;
 	//pass parameter by struct pointer
-	myhandleA = CreateThread(0, 0, &is_perfect, &para , 0, &myThreadID);
+	myhandleA = CreateThread(0, 0, &is_perfect, &para , 0, &myThreadID);//tính nửa đầu
 	//set parameter to the struct
 	para.start = n-(n/2);
 	para.end = n ;
-	myhandleB = CreateThread(0, 0, &is_perfect, &para, 0, &myThreadID);
+	myhandleB = CreateThread(0, 0, &is_perfect, &para, 0, &myThreadID);//tính nửa sau
 	//wait for two thread until it finish
 	WaitForSingleObject(myhandleA, INFINITE);
 	WaitForSingleObject(myhandleB, INFINITE);
