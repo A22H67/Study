@@ -30,22 +30,22 @@ DWORD WINAPI is_perfect(LPVOID  nz) {
 }
 int main() {
 	HANDLE myhandleA, myhandleB;
-	number a;
+	number para;
 	int n;
 	int i;
 	cout << "Input number:";
 	cin >> n;
 
 	//set parameter to the struct
-	a.start = 1;
-	a.end = n / 2;
+	para.start = 1;
+	para.end = n / 2;
 	DWORD  myThreadID;
 	//pass parameter by struct pointer
-	myhandleA = CreateThread(0, 0, &is_perfect, &a , 0, &myThreadID);
+	myhandleA = CreateThread(0, 0, &is_perfect, &para , 0, &myThreadID);
 	//set parameter to the struct
-	a.start = n-(n/2);
-	a.end = n ;
-	myhandleB = CreateThread(0, 0, &is_perfect, &a, 0, &myThreadID);
+	para.start = n-(n/2);
+	para.end = n ;
+	myhandleB = CreateThread(0, 0, &is_perfect, &para, 0, &myThreadID);
 	//wait for two thread until it finish
 	WaitForSingleObject(myhandleA, INFINITE);
 	WaitForSingleObject(myhandleB, INFINITE);
