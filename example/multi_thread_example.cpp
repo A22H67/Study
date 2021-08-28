@@ -1,14 +1,11 @@
 #include "std_lib_facilities.h"
 #include <Windows.h>
 #include <process.h>
-
 CRITICAL_SECTION critical;
 struct number {
 	int start;
 	int end;
 };
-#define THREADCOUNT 2
-HANDLE mutex;
 
 DWORD WINAPI is_perfect(LPVOID  nz) {
 	number* b = (number*)nz;
@@ -19,12 +16,7 @@ DWORD WINAPI is_perfect(LPVOID  nz) {
 	for (int i = c; i < n; i++) {
 		int check;
 		check = n % i;
-		if (check == 0) {
-
-			WaitForSingleObject(mutex, INFINITE); //mutex
-			a += i;
-			ReleaseMutex(mutex);//unlock mutex
-		}
+		if (check == 0) a += i;	
 	}//end for
 	return a;
 }
