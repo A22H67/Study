@@ -25,7 +25,7 @@ void read_d(char *filename){
             if(strcmp(file,".")==0) continue; 
             if(strcmp(file,"..")==0) continue;
             
-            printf("%s:%d bytes mode:%d \n\n",file,st.st_size,st.st_mode);
+            printf("%s:%d bytes  \n\n",file,st.st_size);
             read_d(entry->d_name);
         }//end while
 
