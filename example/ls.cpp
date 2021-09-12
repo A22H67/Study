@@ -24,5 +24,5 @@ main(int argc,char *argv[])
         }//end while
 
     }//end else
-
+ closedir(dir);
 }
