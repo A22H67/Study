@@ -1,5 +1,7 @@
 /*
- Program that scans all directories in a UNIX file system
+
+ Simple example of scans  directories in a UNIX file system
+
 */
 
 #include <dirent.h>
