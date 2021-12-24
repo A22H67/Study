@@ -47,7 +47,7 @@ int main() {
 		/*while (cal_hwnd == NULL) {
 		cal_hwnd = FindWindowA(NULL, (LPCSTR)"Calculator");
 	}*/
-	HWINEVENTHOOK hEventHook = SetWinEventHook(EVENT_OBJECT_CREATE,
+	HWINEVENTHOOK hEventHook = SetWinEventHook(EVENT_OBJECT_DESTROY,
 		EVENT_OBJECT_DESTROY, NULL, WinEventProc,process_infor->dwProcessId,
 		0, 
 		WINEVENT_OUTOFCONTEXT | WINEVENT_SKIPOWNPROCESS
